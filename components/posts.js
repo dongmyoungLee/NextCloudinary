@@ -82,7 +82,11 @@ export default function Posts({ posts }) {
   //async 사용시 자연스럽게 use server 사용 안쓰면 use client
   async function updatePost(postId) {
     updateOptimisticPosts(postId);
-    await togglePostLikeStatus(postId);
+    try {
+      await togglePostLikeStatus(postId);
+    } catch (err) {
+      updateOptimisticPosts(postId); // 롤백
+    }
   }
 
   return (
