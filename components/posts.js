@@ -85,7 +85,7 @@ export default function Posts({ posts }) {
     try {
       await togglePostLikeStatus(postId);
     } catch (err) {
-      updateOptimisticPosts(postId); // 롤백
+      updateOptimisticPosts(postId);
     }
   }
 
